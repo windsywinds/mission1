@@ -1,0 +1,13 @@
+
+
+
+Test Case   |   Scenario    |   Input   | Expected output   |
+------------|---------------|-----------|-------------------|
+    1       |   NaN         |   "a", 6  |       Error       |
+    2       | Correct       |   2, 3    |       5           |
+    3       |   negative    |   -2, 2   |       0           |
+    4       | no entry      |           |       error
+
+
+
+    npm i jest --save-dev
