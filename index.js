@@ -14,9 +14,6 @@ server.listen(8001, () => {
 
 //Find the value of the car based on model and year
 function calculateValue(model, year) {
-    if (typeof model !== 'string') {
-      throw new Error('there is an error');
-    }
     let total = 0;
     for (let i = 0; i < model.length; i++) {
       const charCode = model.charCodeAt(i);
@@ -35,6 +32,9 @@ function calculateValue(model, year) {
 //API1 to find value of car
 server.post('/calculateValue', (req, res) => {
     const { model, year } = req.body;
+    if (typeof model !== 'string' || typeof year !== 'number') {
+      res.status(400).json({ error: "there is an error" });
+    }
     try {
         const result = calculateValue(model, year);
         res.json({ car_value: result });

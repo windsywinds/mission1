@@ -5,7 +5,29 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-const { calculateValue } = require('./index'); // Make sure to replace 'yourApiFileName' with the actual file name where your API code is located.
+
+//check for sever/port?
+
+
+//API1 tests for TDD
+const { calculateValue } = require('./index'); 
+
+//API does exist?
+
+//does accept a str and int
+
+//does not accept an int and string
+//does not accept an int and int
+//does not accept a str and str
+//does not accept a str and str
+
+
+
+//Function does exist?
+
+
+
+
 
 describe('API Tests', () => {
   // Test for API1: /calculateValue
