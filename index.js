@@ -5,9 +5,17 @@ const bodyParser = require('body-parser');
 
 const server = express();
 server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
+
 
 server.listen(8001, () => {
   console.log('Server started and listening on port 8001');
+});
+
+//allow a test route and response to ensure connection and operation between testing and server
+server.post('/test', (req, res) => {
+  const testResponse = "You're receiving a response!";
+  res.json(testResponse);
 });
 
 
@@ -32,7 +40,7 @@ function calculateValue(model, year) {
 //API1 to find value of car
 server.post('/calculateValue', (req, res) => {
     const { model, year } = req.body;
-    if (typeof model !== 'string' || typeof year !== 'number') {
+    if (typeof model !== 'string' || typeof year !== 'number' || year < 0 ) {
       res.status(400).json({ error: "there is an error" });
     }
     try {
@@ -72,4 +80,5 @@ server.post('/calculateRisk', (req, res) => {
 
 
 
-module.exports = calculateValue;
+module.exports = { calculateValue };
+module.exports = { server };
