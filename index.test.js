@@ -1,7 +1,7 @@
 const request = require('supertest');
 const express = require('express');
 const bodyParser = require('body-parser');
-const { calculateValue } = require('./index'); // Update the path accordingly
+const { calculateValue } = require('./index'); 
 const { server } = require('./index');
 
 
