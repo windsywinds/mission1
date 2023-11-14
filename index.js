@@ -62,7 +62,14 @@ function calculateRisk(input) {
           count++;
       }
   }
-  return count;
+  //Check that the rating returned will be atleast 1, and no more than 5
+  if (count <= 0 ) {
+    count++ }
+  if (count >= 6 ) {
+      count = 5
+  }  
+    return count 
+
 }
 
 //API2 to convert claim history to risk rating

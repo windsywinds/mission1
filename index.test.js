@@ -90,3 +90,35 @@ describe('Check API1 and the calculateValue function against test cases', () => 
   });
 });
 
+describe('Check API2 and the calculateRisk function against test cases', () => {
+  it('calculateRisk should exist and be a function', () => {
+    expect(calculateRisk).toBeDefined(); //Checks it is a defined value/type - is boolean
+    expect(typeof calculateRisk).toBe('function'); //Checked it is a function
+  });
+  it('#1 should return the given example resulting in 3', async () => {
+    const response = await request(server)
+      .post('/calculateRisk')
+      .send({ 
+        "claim_history": "My only claim was a crash into my house's garage door that left a scratch on my car.  There are no other crashes." 
+    })
+      .expect(200);
+      const expectedResult = ({
+        "risk_rating": 3
+    })    
+    expect(response.body).toEqual(expectedResult);
+  });
+  it('#2 should return a 1 when no triggers are met', async () => {
+    const response = await request(server)
+      .post('/calculateRisk')
+      .send({ 
+        "claim_history": "I have no history of fault" 
+    })
+      .expect(200);
+      const expectedResult = ({
+        "risk_rating": 1
+    })    
+    expect(response.body).toEqual(expectedResult);
+  });
+  
+});
+

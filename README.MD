@@ -78,11 +78,11 @@ An API that can be called to determine the value of a car, the risk rating of th
   ```sh
   npm i
   ```
-3. Run dev server
+3. Run dev server - requests can be made while running
   ```sh
   npm run dev
   ```
-4. Run tests
+4. Run tests - sever cannot be running or test must be made on new port
   ```sh
   npm test
   ```
