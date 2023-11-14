@@ -107,7 +107,19 @@ describe('Check API2 and the calculateRisk function against test cases', () => {
     })    
     expect(response.body).toEqual(expectedResult);
   });
-  it('#2 should return a 1 when no triggers are met', async () => {
+  it('#2 should identify all 5 trigger words', async () => {
+    const response = await request(server)
+      .post('/calculateRisk')
+      .send({ 
+        "claim_history": "collide crash scratch bump smash" 
+    })
+      .expect(200);
+      const expectedResult = ({
+        "risk_rating": 5
+    })    
+    expect(response.body).toEqual(expectedResult);
+  });
+  it('#3 should return a 1 when no triggers are met', async () => {
     const response = await request(server)
       .post('/calculateRisk')
       .send({ 
@@ -119,6 +131,18 @@ describe('Check API2 and the calculateRisk function against test cases', () => {
     })    
     expect(response.body).toEqual(expectedResult);
   });
-  
+  it('#4 should return a 5 as the maximum rating', async () => {
+    const response = await request(server)
+      .post('/calculateRisk')
+      .send({ 
+        "claim_history": "bump crash bump crash bump crash bump crash" 
+    })
+      .expect(200);
+      const expectedResult = ({
+        "risk_rating": 5
+    })    
+    expect(response.body).toEqual(expectedResult);
+  });  
+    
 });
 
