@@ -12,16 +12,17 @@ server.listen(8001, () => {
   console.log('Server started and listening on port 8001');
 });
 
-//allow a test route and response to ensure connection and operation between testing and server
-server.post('/test', (req, res) => {
+//Allow a test route and response to ensure connection and operation between testing and server
+server.use('/test', (req, res) => {
   const testResponse = "You're receiving a response!";
   res.json(testResponse);
 });
 
 
 
-//Find the value of the car based on model and year
+//Find the value of the car based on model and year for API1
 function calculateValue(model, year) {
+  //For loop to assign a value for each letter
     let total = 0;
     for (let i = 0; i < model.length; i++) {
       const charCode = model.charCodeAt(i);
@@ -34,6 +35,7 @@ function calculateValue(model, year) {
       }
     }
     const carYear = year;
+    //Multiple the carvalue by 100 and add the year
     return total * 100 + carYear;
 };
 
@@ -51,13 +53,14 @@ server.post('/calculateValue', (req, res) => {
     }
 });
 
-//Find the risk rating from the users input
+//Find the risk rating from the users input for API2
 function calculateRisk(input) {
+  //List an array of words to use as triggers
   const triggerWords = ['collide', 'crash', 'scratch', 'bump', 'smash'];
   let count = 0;
   // Split the user input into words
   const words = input.split(' ');
-  //For loop to check word list against the triggers
+  //For loop to check word list against the triggers and add a count for each
   for (const word of words) {
       if (triggerWords.some(trigger => word.toLowerCase().includes(trigger.toLowerCase()))) {
           count++;
@@ -80,5 +83,5 @@ server.post('/calculateRisk', (req, res) => {
 
 
 
-module.exports = { calculateValue };
-module.exports = { server };
+
+module.exports = { server, calculateValue, calculateRisk }; //Export server and functions for testing purposes

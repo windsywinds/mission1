@@ -63,7 +63,7 @@ An API that can be called to determine the value of a car, the risk rating of th
 
 * Vanilla Javascript
 * Express JS
-* Jest testing library
+* Jest testing library with Supertest
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -81,6 +81,10 @@ An API that can be called to determine the value of a car, the risk rating of th
 3. Run dev server
   ```sh
   npm run dev
+  ```
+4. Run tests
+  ```sh
+  npm test
   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

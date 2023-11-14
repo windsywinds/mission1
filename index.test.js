@@ -2,28 +2,25 @@ const request = require('supertest');
 const express = require('express');
 const bodyParser = require('body-parser');
 const { calculateValue } = require('./index'); 
+const { calculateRisk } = require('./index'); 
 const { server } = require('./index');
 
 
 
 describe('Check the existence and opertion of the server', () => {
-  it('should return the expected response', async () => {
+  it('should return the expected response from the server', async () => {
     const response = await request(server)
       .post('/test')
       .expect(200);
-    expect(response.body).toBeDefined();
     expect(response.body).toBe("You're receiving a response!");
   });
 })
 
-
-// Mock data 
-const mockData = {
-  "model": "Civic",
-  "year": 2014,
-};
-
-describe('calculateValue function and API endpoint', () => {
+describe('Check API1 and the calculateValue function against test cases', () => {
+  it('calculateValue should exist and be a function', () => {
+    expect(calculateValue).toBeDefined(); //Checks it is a defined value/type
+    expect(typeof calculateValue).toBe('function'); //Checked it is a function
+  });
   it('#1 should return the given example of Civic 2014 equals 6614', async () => {
     const response = await request(server)
       .post('/calculateValue')
@@ -63,7 +60,7 @@ describe('calculateValue function and API endpoint', () => {
     })    
     expect(response.body).toEqual(expectedResult);
   });
-  it('#4 it should return an error when using negative numbers', async () => {
+  it('#4 should return an error when using negative numbers', async () => {
     const response = await request(server)
       .post('/calculateValue')
       .send({
@@ -75,7 +72,7 @@ describe('calculateValue function and API endpoint', () => {
     })    
     expect(response.body).toEqual(expectedResult);
   });
-  it('#5 it should return an error when using the wrong data type', async () => {
+  it('#5 should return an error when using the wrong data type', async () => {
     const response = await request(server)
       .post('/calculateValue')
       .send({
