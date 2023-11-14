@@ -4,7 +4,7 @@ const { calculateRisk } = require('./index');
 const { createQuote } = require('./index'); 
 const { server } = require('./index');
 
-
+//Tests for server existence/operation
 
 describe('Check the existence and opertion of the server', () => {
   it('should return the expected response from the server if operational', async () => {
@@ -20,6 +20,8 @@ describe('Check the existence and opertion of the server', () => {
   });
 })
 
+
+//API 1 tests
 describe('Check API1 and the calculateValue function against test cases', () => {
   it('calculateValue should exist and be a function', () => {
     expect(calculateValue).toBeDefined(); //Checks it is a defined value/type - is boolean
@@ -90,6 +92,8 @@ describe('Check API1 and the calculateValue function against test cases', () => 
   });
 });
 
+
+//API2 tests
 describe('Check API2 and the calculateRisk function against test cases', () => {
   it('calculateRisk should exist and be a function', () => {
     expect(calculateRisk).toBeDefined(); //Checks it is a defined value/type - is boolean
@@ -143,6 +147,16 @@ describe('Check API2 and the calculateRisk function against test cases', () => {
     })    
     expect(response.body).toEqual(expectedResult);
   });  
+  it('#5 should return an error if wrong data type', async () => {
+    const response = await request(server)
+      .post('/calculateRisk')
+      .send({ 
+        "claim_history": 5 
+    })
+      .expect(400);
+      const expectedResult = ({ error: "there is an error" })    
+    expect(response.body).toEqual(expectedResult);
+  }); 
     
 });
 
