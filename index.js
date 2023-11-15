@@ -78,7 +78,9 @@ function calculateRisk(input) {
 //API2 to convert claim history to risk rating
 server.post("/calculateRisk", (req, res) => {
   const { claim_history } = req.body;
-
+    if (typeof claim_history !== "string") {
+      res.status(400).json({ error: "there is an error" });
+    }
   try {
     const riskResult = calculateRisk(claim_history);
     res.json({ risk_rating: riskResult });
