@@ -147,7 +147,19 @@ describe('Check API2 and the calculateRisk function against test cases', () => {
     })    
     expect(response.body).toEqual(expectedResult);
   });  
-  it('#5 should return an error if wrong data type', async () => {
+  it('#5 should return a 5 as the maximum rating', async () => {
+    const response = await request(server)
+      .post('/calculateRisk')
+      .send({ 
+        "claim_history": "zzbuzzmpzz, zzcrzzshzz" 
+    })
+      .expect(200);
+      const expectedResult = ({
+        "risk_rating": 1
+    })    
+    expect(response.body).toEqual(expectedResult);
+  });
+  it('#6 should return an error if wrong data type', async () => {
     const response = await request(server)
       .post('/calculateRisk')
       .send({ 
@@ -157,6 +169,18 @@ describe('Check API2 and the calculateRisk function against test cases', () => {
       const expectedResult = ({ error: "there is an error" })    
     expect(response.body).toEqual(expectedResult);
   }); 
+  it('#5 should identify conjugations of trigger words', async () => {
+    const response = await request(server)
+      .post('/calculateRisk')
+      .send({ 
+        "claim_history": "collides, crashes, scratches, bumps, smashes" 
+    })
+      .expect(200);
+      const expectedResult = ({
+        "risk_rating": 5
+    })    
+    expect(response.body).toEqual(expectedResult);
+  });
     
 });
 
