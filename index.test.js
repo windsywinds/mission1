@@ -1,8 +1,6 @@
 const request = require('supertest');
-const { calculateValue } = require('./index'); 
-const { calculateRisk } = require('./index'); 
-const { createQuote } = require('./index'); 
-const { server } = require('./index');
+const { calculateValue, calculateRisk, createQuote, server } = require('./index'); 
+
 
 //Tests for server existence/operation
 
@@ -17,6 +15,7 @@ describe('Check the existence and opertion of the server', () => {
     const response = await request(server)  
     .post('/incorrectpath')
       .expect(404);
+      expect(response.status).toBe(404);
   });
 })
 
