@@ -4,7 +4,7 @@ const { calculateValue, calculateRisk, createQuote, server } = require('./index'
 
 
 //Tests for server existence/operation
-describe('Check the existence and opertion of the server', () => {
+describe('Check the existence and operation of the server', () => {
   it('should return the expected response from the server if operational', async () => {
     const response = await request(server)
       .post('/test')
@@ -17,7 +17,6 @@ describe('Check the existence and opertion of the server', () => {
       .expect(404);
       expect(response.status).toBe(404);
   });
-  
 })
 
 
@@ -181,6 +180,5 @@ describe('Check API2 and the calculateRisk function against test cases', () => {
     })    
     expect(response.body).toEqual(expectedResult);
   });
-
 });
 

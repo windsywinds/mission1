@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "jest --detectOpenHandles --runInBand --force-exit "
+    "test": "jest --detectOpenHandles --force-exit "
   },
   "author": "",
   "license": "ISC",
@@ -22,3 +22,4 @@
     "testEnvironment": "node"
   }
 }
+

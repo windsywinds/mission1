@@ -16,8 +16,6 @@ server.use("/test", (req, res) => {
   res.json(testResponse);
 });
 
-// this is a test message from Nils
-
 //Find the value of the car based on model and year for API1
 function calculateValue(model, year) {
   //Convert model to lowercase
